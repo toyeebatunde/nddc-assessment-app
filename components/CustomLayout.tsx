@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState, useRef, Fragment, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AppContext from "./ContextProvider";
@@ -77,6 +77,7 @@ export default function DashboardLayout({ children, cookieData }: DashboardProps
     // }, [])
 
     useEffect(()=>{
+        console.log("cookie: ", cookieData)
         if(cookieData) {
             setUserCookieData(cookieData)
             setIsLoading(false)

@@ -55,9 +55,9 @@ export default function Home() {
     async function fetchUserData() {
       try {
         const userData = await axios.get(`${base}api/app-users/get`,
-          {
-            withCredentials: true
-          }
+          // {
+          //   withCredentials: true
+          // }
         )
         if (userData.status == 200) {
           setFormDetails(userData.data)

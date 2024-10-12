@@ -225,14 +225,10 @@ export default function ViewAssessments() {
                 setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/" })
             }
         } catch (error) {
-            // console.error("Signin error:", error)
+            console.error("Signin error:", error)
             setDialogue({ ...dialogue, result: false, text: "Error submitting assessment", path: "" })
             setSubmitting(false)
         }
-        // finally {
-        //   setDialogue({ ...dialogue, result: false, text: "Error creating. try again", path: "" })
-        //   setSubmitting(false)
-        // }
     }
 
 

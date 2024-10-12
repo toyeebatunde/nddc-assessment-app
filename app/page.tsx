@@ -92,7 +92,7 @@ export default function Home() {
     e.preventDefault()
     // setSubmitting(true)
     const formInfo = formDetails
-    debugger
+    // debugger
     // setDialogue({ ...dialogue, result: true, text: "Update Successful", path: `/take-assessment?id=1`})
     // console.log("token: ", token)
     // debugger

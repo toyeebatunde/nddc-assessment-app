@@ -201,28 +201,28 @@ export default function ViewAssessments() {
     async function submitAssessment(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setSubmitting(true)
-        // const id = JSON.parse(localStorage.getItem("employer")).id
-        // const token = localStorage.getItem("token") || ""
-        // debugger
-        // console.log("body: ", bodyObject)
+        const id = localStorage.getItem("assessmentId")
+        const token = localStorage.getItem("token") || ""
+        debugger
+        // console.log("body: ", JSON.stringify(solutions))
 
         try {
             // debugger
             const submitted = await axios.post(
-                `${base}admin/api/assessments/submit/${assessmentToView.id}`,
+                `${base}api/assessments/submit/${id}`,
                 solutions,
-                // {
-                //   headers: {
-                //     Authorization: `Bearer ${token}`,
-                //   },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
                 //   withCredentials: true
-                // }
+                }
             )
 
             if (submitted.status === 200) {
                 setSubmitting(false)
                 setSolutions([])
-                setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/" })
+                setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/completed" })
             }
         } catch (error) {
             console.error("Signin error:", error)

@@ -13,7 +13,7 @@ type AlertDialogueProps = {
 
 export default function AlertDialog({ props }:AlertDialogueProps) {
   const router = useRouter()
-  const {text, result, path, handler} = props
+  const {text, result, path, handler, buttonText} = props
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -60,7 +60,7 @@ export default function AlertDialog({ props }:AlertDialogueProps) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{result ? "Continue" : "Try Again"}</Button>
+          <Button onClick={handleClose}>{buttonText ? buttonText : result ? "Continue" : "Try Again"}</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

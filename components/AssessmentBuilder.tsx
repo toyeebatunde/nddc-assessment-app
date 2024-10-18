@@ -18,7 +18,7 @@ export default function AssessmentBuilder({ questionText, questionType, options 
 
     return (
         <div className="w-[350px] md:w-[600px] flex gap-[10px] flex-col">
-            <div className={`text-[15px] md:text-[25px] borde bg-[#2dcd7c p-[16px] font-[500] text-[20px] text-[gray] `}>
+            <div className={`text-[15px] md:text-[25px] borde bg-[#2dcd7c p-[16px] font-[400] text-[20px] text-[gray] `}>
                 {questionText}
                 {questionType == "MULTI_CORRECT" && (<h2 className="text-[14px] mt-[10px] font-[400]">
                     {"*This is a multiple choice question. Select all answers that apply"}

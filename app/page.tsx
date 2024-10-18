@@ -122,6 +122,7 @@ export default function Home() {
     setSubmitting(true)
     const token = localStorage.getItem("token")
     const formInfo = formDetails
+
     // debugger
     try {
       const isLogged = await axios.put(`${base}api/app-users/update`,

@@ -17,10 +17,10 @@ export default function AssessmentBuilder({ questionText, questionType, options 
     const [selectedAnswers, setSelectedAnswers] = useState([])
 
     return (
-        <div className="w-[350px] md:w-[400px] flex flex-col">
-            <div className={`text-[25px] borde bg-[#2dcd7c] px-[4px] font-[600] text-[20px] text-white `}>
+        <div className="w-[350px] md:w-[600px] flex gap-[10px] flex-col">
+            <div className={`text-[15px] md:text-[25px] borde bg-[#2dcd7c p-[16px] font-[500] text-[20px] text-[gray] `}>
                 {questionText}
-                {questionType == "MULTI_CORRECT" && (<h2 className="text-[12px] font-[700]">
+                {questionType == "MULTI_CORRECT" && (<h2 className="text-[14px] mt-[10px] font-[400]">
                     {"*This is a multiple choice question. Select all answers that apply"}
                 </h2>)}
             </div>
@@ -28,11 +28,11 @@ export default function AssessmentBuilder({ questionText, questionType, options 
 
 
             {questionType == "MULTI_CORRECT" && (
-                <div className="flex flex-col bg-[beige] gap-[5px] items-start">
+                <div className="flex flex-col gap-[5px] items-start">
                     {options.map((option: any, index: any) => {
                         return (
                             <Fragment key={index}>
-                                <div className="flex  gap-[5px] items-center text-[20px] font-[600]">
+                                <div className="flex gap-[5px] bg-[beige] w-full items-center text-[20px] font-[600]">
                                     <Checkbox
                                         name={option.optionText}
                                         value={option.isCorrect}
@@ -51,12 +51,12 @@ export default function AssessmentBuilder({ questionText, questionType, options 
                     aria-labelledby="demo-radio-buttons-group-label"
                     name="radio-buttons-group"
                     onChange={(e) => { handleSolution(e, id, options) }}
-                    className="borde px-[10px] bg-[beige]"
+                    className="borde pl-[10px] flex flex-col gap-[5px]"
                 >
                     {options.map((option: any, index: any) => {
                         return (
                             <Fragment key={index}>
-                                <FormControlLabel value={option.optionText} control={<Radio />} label={option.optionText} />
+                                <FormControlLabel className="borde w-[103%] bg-[beige]" value={option.optionText} control={<Radio />} label={option.optionText} />
                             </Fragment>
                         )
                     })}

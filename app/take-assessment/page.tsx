@@ -23,6 +23,7 @@ export default function ViewAssessments() {
     const searchParams = useSearchParams()
     const [isLoading, setLoading] = useState<boolean>(true)
     const [description, setDescription] = useState<any>("")
+    const [title, setTitle] = useState<any>("")
 
 
 
@@ -59,6 +60,7 @@ export default function ViewAssessments() {
                 if (assessment.status === 200) {
                     const thisAssessment = assessment.data.find((item: any) => item.id == assessmentId)
                     setDescription(thisAssessment.description)
+                    setTitle(thisAssessment.title)
                 }
             } catch (error) {
                 // debugger
@@ -258,8 +260,11 @@ export default function ViewAssessments() {
             {isLoading && (<div>Loading...</div>)}
 
             {currentAssessmentQuestions.length > 0 && (
-                <form onSubmit={submitAssessment} className=" border-4 self-center pb-[20px] rounded-[5px] p-[5px] borde w-fit flex flex-col gap-[15px] items-center">
-                    <h2 className="rounded-t-[10px] mb-[5px] borde bg-[#2dcd7c] font-[600] text-[20px] text-white px-[10px] text-center">
+                <form onSubmit={submitAssessment} className=" self-center pb-[20px] rounded-[5px] p-[5px] borde w-fit flex flex-col gap-[15px] items-center">
+                    <h2 className="rounded-t-[10px] md:text-[30px]  w-[350px] md:w-[600px] mt-[20px] mb-[15px] borde font-[600] text-[20px] text-[gray] text-white px-[10px] text-center">
+                        {title}
+                    </h2>
+                    <h2 className=" w-[350px] rounded-[10px] p-[18px] md:w-[600px] mt-[20px] mb-[15px] borde bg-[#2dcd7c] font-[400] md:text-[20px] text-white px-[10px]">
                         {description}
                     </h2>
                     {currentAssessmentQuestions.map((question, index) => {

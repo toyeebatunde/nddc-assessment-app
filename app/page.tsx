@@ -55,7 +55,7 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchUserData() {
-      const token = searchParams.get("token")
+      const token = searchParams.get("token") || searchParams.get("code")
       token && localStorage.setItem("token", token)
       console.log("token: ", token)
       try {

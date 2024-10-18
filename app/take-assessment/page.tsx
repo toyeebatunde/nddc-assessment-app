@@ -22,6 +22,7 @@ export default function ViewAssessments() {
     const [dialogue, setDialogue] = useState<{ text: string, result: boolean, path: string, handler?: any }>({ text: "", result: false, path: "" })
     const searchParams = useSearchParams()
     const [isLoading, setLoading] = useState<boolean>(true)
+    const [description, setDescription] = useState<any>("")
 
 
 
@@ -48,29 +49,48 @@ export default function ViewAssessments() {
     //     }
     // }, [assessmentQuestions])
 
-    useEffect(()=>{
-       async function fetchAssessment() {
-        // const assessment = await axios.get(`${base}api/question/list/1`)
-        const assessmentId = searchParams.get("id")
-        try {
-            // debugger
-            const assessment = await axios.get(`${base}api/question/list/${assessmentId}`)            
-            if (assessment.status === 200) {
+    useEffect(() => {
+        async function fetchDescription() {
+            const assessmentId = searchParams.get("id")
+            // const assessmentsResponse = await axios.get(`${base}api/assessments/list`)
+            try {
+
+                const assessment = await axios.get(`${base}api/assessments/list`)
+                if (assessment.status === 200) {
+                    const thisAssessment = assessment.data.find((item: any) => item.id == assessmentId)
+                    setDescription(thisAssessment.description)
+                }
+            } catch (error) {
+                // debugger
+                console.error("description error:", error)
+                // setDialogue({ ...dialogue, result: false, text: "Error submitting assessment", path: "" })
                 // setSubmitting(false)
-                // setSolutions([])
-                // setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/" })
-                setCurrentAssessmentQuestions(assessment.data)
-                setLoading(false)
             }
-        } catch (error) {
-            // debugger
-            // console.error("Signin error:", error)
-            setDialogue({ ...dialogue, result: false, text: "Error submitting assessment", path: "" })
-            setSubmitting(false)
+
         }
-       }
-       fetchAssessment() 
-    },[])
+        async function fetchAssessment() {
+            // const assessment = await axios.get(`${base}api/question/list/1`)
+            const assessmentId = searchParams.get("id")
+            try {
+
+                const assessment = await axios.get(`${base}api/question/list/${assessmentId}`)
+                if (assessment.status === 200) {
+                    // setSubmitting(false)
+                    // setSolutions([])
+                    // setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/" })
+                    setCurrentAssessmentQuestions(assessment.data)
+                    setLoading(false)
+                }
+            } catch (error) {
+                // debugger
+                // console.error("Signin error:", error)
+                setDialogue({ ...dialogue, result: false, text: "Error fetching assessment", path: "" })
+                setSubmitting(false)
+            }
+        }
+        fetchAssessment()
+        fetchDescription()
+    }, [])
 
     function removeCheckboxAnswer(text: string | number, arr: (string | number)[]) {
         const newArr = arr.filter((item) => item !== text)
@@ -212,10 +232,10 @@ export default function ViewAssessments() {
                 `${base}api/assessments/submit/${id}`,
                 solutions,
                 {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-                //   withCredentials: true
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    //   withCredentials: true
                 }
             )
 
@@ -236,8 +256,12 @@ export default function ViewAssessments() {
     return (
         <div className="flex flex-col w-full h-fit justify-center">
             {isLoading && (<div>Loading...</div>)}
+
             {currentAssessmentQuestions.length > 0 && (
-                <form onSubmit={submitAssessment} className=" borde self-center pb-[20px] rounded-[5px] p-[5px] borde w-fit flex flex-col gap-[15px] items-center">
+                <form onSubmit={submitAssessment} className=" border-4 self-center pb-[20px] rounded-[5px] p-[5px] borde w-fit flex flex-col gap-[15px] items-center">
+                    <h2 className="rounded-t-[10px] mb-[5px] borde bg-[#2dcd7c] font-[600] text-[20px] text-white px-[10px] text-center">
+                        {description}
+                    </h2>
                     {currentAssessmentQuestions.map((question, index) => {
                         return (
                             <Fragment key={index}>

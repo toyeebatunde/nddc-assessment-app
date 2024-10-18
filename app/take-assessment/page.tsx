@@ -261,7 +261,7 @@ export default function ViewAssessments() {
 
             {currentAssessmentQuestions.length > 0 && (
                 <form onSubmit={submitAssessment} className=" self-center pb-[20px] rounded-[5px] p-[5px] borde w-fit flex flex-col gap-[15px] items-center">
-                    <h2 className="rounded-t-[10px] md:text-[30px]  w-[350px] md:w-[600px] mt-[20px] mb-[15px] borde font-[600] text-[20px] text-[gray] text-white px-[10px] text-center">
+                    <h2 className="rounded-t-[10px] md:text-[30px]  w-[350px] md:w-[600px] mt-[20px] mb-[15px] borde font-[600] text-[20px] text-[gray] px-[10px] text-center">
                         {title}
                     </h2>
                     <h2 className=" w-[350px] rounded-[10px] p-[18px] md:w-[600px] mt-[20px] mb-[15px] borde bg-[#2dcd7c] font-[400] md:text-[20px] text-white px-[10px]">

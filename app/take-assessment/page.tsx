@@ -234,7 +234,7 @@ export default function ViewAssessments() {
             )
 
             if (submitted.status === 200) {
-                setSubmitting(false)
+                // setSubmitting(false)
                 setSolutions([])
                 setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/completed" })
             }
@@ -267,7 +267,7 @@ export default function ViewAssessments() {
             )
 
             if (submitted.status === 200) {
-                setSubmitting(false)
+                // setSubmitting(false)
                 setSolutions([])
                 setDialogue({ ...dialogue, result: true, text: "Assessment submitted successfully", path: "/completed" })
             }

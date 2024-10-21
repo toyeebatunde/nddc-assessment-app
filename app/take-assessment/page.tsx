@@ -72,8 +72,7 @@ export default function ViewAssessments() {
                         setDialogue({ ...dialogue, result: true, text: "You are about to begin the assessment", path: "", buttonText:"Begin Assessment", handler: startTimer })
                     } else {
                         startTimer()
-                    }
-                    
+                    }                    
                     setCurrentAssessmentQuestions(assessment.data)
                     setLoading(false)
                 }

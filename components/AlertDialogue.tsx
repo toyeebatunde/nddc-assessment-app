@@ -8,12 +8,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 type AlertDialogueProps = {
-    props: any
+  props: any
 }
 
-export default function AlertDialog({ props }:AlertDialogueProps) {
+export default function AlertDialog({ props }: AlertDialogueProps) {
   const router = useRouter()
-  const {text, result, path, handler, buttonText} = props
+  const { text, result, path, handler, buttonText } = props
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -21,13 +21,15 @@ export default function AlertDialog({ props }:AlertDialogueProps) {
   };
 
   const handleClose = () => {
-    if(result) {
+    if (result) {
+      if (handler) {
+        handler()
+      }
       path && router.push(path)
       setOpen(false)
       return
     }
-    if(handler) {
-      // debugger
+    if (handler) {
       handler()
     }
     setOpen(false)
@@ -52,9 +54,9 @@ export default function AlertDialog({ props }:AlertDialogueProps) {
         aria-describedby="Notification"
 
       >
-        
+
         <DialogContent
-        className='w-[300px]'>
+          className='w-[300px]'>
           <DialogContentText id="alert-dialog-description">
             {text}
           </DialogContentText>
